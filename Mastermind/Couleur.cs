@@ -6,5 +6,7 @@
         Bleu,
         Jaune,
         Violet,
+        Rose,
+        Vert,
     }
 }

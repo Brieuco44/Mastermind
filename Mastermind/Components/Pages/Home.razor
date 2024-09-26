@@ -1,6 +1,9 @@
 ﻿@page "/"
 @rendermode InteractiveServer
 
+@using MudBlazor
+@inject NavigationManager Navigation
+
 <PageTitle>Mastermind</PageTitle>
 
 <h1 class="text-center">Mastermind</h1>
@@ -9,21 +12,38 @@
     @foreach (var sousListe in ListeEnvoie)
     {
         <div class="d-flex justify-content-center">
-            @foreach (var couleur in sousListe)
-            {
-                <SelectCouleur @bind-SelectedColorIndex="couleur" AfficheBtn="false"></SelectCouleur>
-            }
+            <SelectCouleur @bind-SelectedColorIndex="sousListe[0]" AfficheBtn="false"></SelectCouleur>
+                <SelectCouleur @bind-SelectedColorIndex="sousListe[1]" AfficheBtn="false"></SelectCouleur>
+                <SelectCouleur @bind-SelectedColorIndex="sousListe[2]" AfficheBtn="false"></SelectCouleur>
+                <SelectCouleur @bind-SelectedColorIndex="sousListe[3]" AfficheBtn="false"></SelectCouleur>
+                <SelectCouleur @bind-SelectedColorIndex="sousListe[4]" AfficheBtn="false"></SelectCouleur>
         </div>
     }
+    <div class="d-flex justify-content-center">
+        <Correcteur Validation="Resultat[0]" ></Correcteur>
+        <Correcteur Validation="Resultat[1]" ></Correcteur>
+        <Correcteur Validation="Resultat[2]"></Correcteur>
+        <Correcteur Validation="Resultat[3]"></Correcteur>
+        <Correcteur Validation="Resultat[4]"></Correcteur>
+    </div>
 }
-
-<div class="d-flex justify-content-center">
-    <SelectCouleur @bind-SelectedColorIndex="Couleur0" AfficheBtn="true"></SelectCouleur>
-    <SelectCouleur @bind-SelectedColorIndex="Couleur1" AfficheBtn="true"></SelectCouleur>
-    <SelectCouleur @bind-SelectedColorIndex="Couleur2" AfficheBtn="true"></SelectCouleur>
-    <SelectCouleur @bind-SelectedColorIndex="Couleur3" AfficheBtn="true"></SelectCouleur>
-    <SelectCouleur @bind-SelectedColorIndex="Couleur4" AfficheBtn="true"></SelectCouleur>
-</div>
-<div class="text-center">
-    <button class="btn btn-outline-primary" @onclick="Envoie">Valider</button>
-</div>
+@if (!Victoire)
+{
+    <div class="d-flex justify-content-center">
+        <SelectCouleur @bind-SelectedColorIndex="Couleur0" AfficheBtn="true"></SelectCouleur>
+        <SelectCouleur @bind-SelectedColorIndex="Couleur1" AfficheBtn="true"></SelectCouleur>
+        <SelectCouleur @bind-SelectedColorIndex="Couleur2" AfficheBtn="true"></SelectCouleur>
+        <SelectCouleur @bind-SelectedColorIndex="Couleur3" AfficheBtn="true"></SelectCouleur>
+        <SelectCouleur @bind-SelectedColorIndex="Couleur4" AfficheBtn="true"></SelectCouleur>
+    </div>
+    <div class="text-center">
+        <button class="btn btn-outline-primary" @onclick="Envoie">Valider</button>
+    </div>
+}
+else
+{
+    <div class="text-center">
+        <h2>Bravo vous avez gagné</h2>
+        <button class="btn btn-outline-primary" @onclick="NouvellePartie">Recommencer</button>
+    </div>
+}

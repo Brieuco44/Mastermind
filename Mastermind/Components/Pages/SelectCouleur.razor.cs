@@ -23,10 +23,12 @@ namespace Mastermind.Components.Pages
         {
             return color switch
             {
-                Couleur.Rouge => "#FF0000",
-                Couleur.Bleu => "#0000FF",
-                Couleur.Jaune => "#FFFF00",
-                Couleur.Violet => "#c903f9",
+                Couleur.Rouge => "#f22f2f",
+                Couleur.Bleu => "#2fb4f2",
+                Couleur.Jaune => "#f2e92f",
+                Couleur.Violet => "#b72ff2",
+                Couleur.Rose => "#ff3bea",
+                Couleur.Vert => "#018e0c"
             };
         }
 
