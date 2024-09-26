@@ -1,0 +1,29 @@
+﻿@page "/"
+@rendermode InteractiveServer
+
+<PageTitle>Mastermind</PageTitle>
+
+<h1 class="text-center">Mastermind</h1>
+@if (ListeEnvoie != null && ListeEnvoie.Count > 0)
+{
+    @foreach (var sousListe in ListeEnvoie)
+    {
+        <div class="d-flex justify-content-center">
+            @foreach (var couleur in sousListe)
+            {
+                <SelectCouleur @bind-SelectedColorIndex="couleur" AfficheBtn="false"></SelectCouleur>
+            }
+        </div>
+    }
+}
+
+<div class="d-flex justify-content-center">
+    <SelectCouleur @bind-SelectedColorIndex="Couleur0" AfficheBtn="true"></SelectCouleur>
+    <SelectCouleur @bind-SelectedColorIndex="Couleur1" AfficheBtn="true"></SelectCouleur>
+    <SelectCouleur @bind-SelectedColorIndex="Couleur2" AfficheBtn="true"></SelectCouleur>
+    <SelectCouleur @bind-SelectedColorIndex="Couleur3" AfficheBtn="true"></SelectCouleur>
+    <SelectCouleur @bind-SelectedColorIndex="Couleur4" AfficheBtn="true"></SelectCouleur>
+</div>
+<div class="text-center">
+    <button class="btn btn-outline-primary" @onclick="Envoie">Valider</button>
+</div>
